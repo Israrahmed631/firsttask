@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Tickets Reservation System</title>
+    <style>
+    	* { font: 25px Calibri; color: White; text-align: center; background-color: Black;}
+        .empty {
+          height: 75px;
+          width: 75px;
+          background-color: white;
+          border-radius: 50%;
+          display: inline-block;
+        }
+        .reserve {
+          height: 75px;
+          width: 75px;
+          background-color: Yellow;
+          border-radius: 50%;
+          display: inline-block;
+        }
+    </style>
+    <script>
+        function createSeats() {
+            var div = document.getElementById('cont');
+            for (var i = 1; i <= 48; i++) {
+              if (i==13 || i == 25 || i==37)
+              div.appendChild(document.createElement('br'));
+                var  empSeat = document.createElement('span');
+                empSeat.setAttribute('id', 'empSeat'); // circle id.
+                empSeat.setAttribute('class', 'empty');
+                empSeat.setAttribute('onclick', 'colorChange(this)');
+                empSeat.setAttribute('oncontextmenu','cancelBox(this)');
+                div.appendChild(empSeat);
+          }
+        }
+
+
+function cancelBox() {
+
+  var elem = document.getElementById("empSeat");
+    elem.classList.toggle("reserve");
+
+    var p = window.getSelection().focusOffset;
+     alert("You right-clicked inside the div!"+p);
+
+}
+
+    function colorChange(seat){
+
+    var elem = document.getElementById("empSeat");
+    elem.classList.toggle("reserve");
+  //    var x = document.getElementById("cont").selectedIndex;
+    //  var y = document.getElementsByTagName("span");
+  //    alert(seat.color );
+
+
+        }
+
+    </script>
+
+</head>
+<body onload="createSeats()">
+<p >
+Tickets Reservation System </p>
+<div id="cont"></div>  <!-- the container to add the Seats -->
+</body>
+</html>
