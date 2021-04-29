@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Tickets Reservation System</title>
+    <style>
+    	* { font: 25px Calibri; color: White; text-align: center; background-color: Black;}
+        .empty {
+          height: 75px;
+          width: 75px;
+          background-color: White;
+          border-radius: 50%;
+          display: inline-block;
+        }
+        .reserve {
+          height: 75px;
+          width: 75px;
+          background-color: Yellow;
+          border-radius: 50%;
+          display: inline-block;
+        }
+    </style>
+    <script>
+        function createSeats() {
+            var div = document.getElementById('cont');
+            for (var i = 1; i <= 48; i++) {
+              if (i==13 || i == 25 || i==37)
+              {  div.appendChild(document.createElement('br'));}
+
+                var  empSeat = document.createElement('span');
+                empSeat.setAttribute('id', i); // circle id.
+                empSeat.setAttribute('class', 'empty');
+                empSeat.setAttribute('onclick', 'colorChange(this.id)');
+                empSeat.setAttribute('oncontextmenu','cancelBox(this.id)');
+
+                div.appendChild(empSeat);
+          }
+        }
+
+
+function cancelBox(seat) {
+  var elem = document.getElementById(seat);
+	if(elem.className == "empty reserve")
+ 		{ var a = confirm("Do you want to cancel reservation! ?");
+               		if( a == true ) {
+			//var elem = document.getElementById(seat);
+			elem.classList.toggle("reserve");
+               		}
+                	else 	{
+               		}
+  }
+
+}
+
+    function colorChange(seat){
+    var elem = document.getElementById(seat);
+	if(elem.className == "empty")
+   	 elem.classList.toggle("reserve");
+        }
+
+    </script>
+
+</head>
+<body onload="createSeats()" oncontextmenu="return false">
+<p >
+Tickets Reservation System </p>
+<div id="cont"></div>  <!-- the container to add the Seats -->
+</body>
+</html>
